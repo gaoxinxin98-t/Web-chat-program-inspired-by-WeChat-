@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <div class="nav">
+        网页聊天室
+    </div>
+    <div class="login-container">
+        <div class="login-dialog">
+            <h3>注册</h3>
+            <div class="row">
+                <span>用户名</span>
+                <input type="text" id="username">
+            </div>
+            <div class="row">
+                <span>密码</span>
+                <input type="password" id="password">
+            </div>
+            <div class="row">
+                <button id="submit" onclick="submit()">注册</button>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    function submit() {
+        $.ajax({
+            type:'post',
+            url:'/register',
+            data:{
+                "username":$("#username").val(),
+                "password":$("#password").val()
+            },
+            success:function(result) {
+                if(result && result.userId>0)
+                {
+                    alert("注册成功");
+                    location.assign("/login.html");
+                }else if(username =='' || password==''){
+                    alert("用户名或密码为空");
+                }else{
+                    alert("注册失败，请联系管理员")
+                }
+            }
+        });
+    }
+
+</script>
+
+</html>

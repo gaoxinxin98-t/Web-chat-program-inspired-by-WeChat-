@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="test">
+    <button id="submit">发送</button>
+</body>
+<script>
+    let webSocket = new WebSocket("ws://127.0.0.1:8080/test");
+    webSocket.onopen=function() {
+        console.log("链接成功");
+    }
+
+    webSocket.onmessage=function(e) {
+        console.log("发送消息：",e.data);
+    }
+
+    webSocket.onerror=function() {
+        console.log("发生异常");
+    }
+
+    webSocket.onclose-function() {
+        console.log("链接关闭");
+    }
+
+    let messageInput = document.querySelector("#test");
+    let sendButton = document.querySelector("#submit");
+
+    sendButton.onclick = function() {
+        console.log("发送消息内容：",messageInput.value.trim());
+        webSocket.send(messageInput.value.trim());
+    }
+
+</script>
+</html>

@@ -1,0 +1,377 @@
+/* 这个文件来放置主界面中的样式 */
+
+.client-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ededed;
+}
+
+.main {
+    width: 1000px;
+    height: 740px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+
+    display: flex;
+
+    z-index: 2;
+    overflow: hidden;
+}
+
+.main .left {
+    width: 280px;
+    height: 100%;
+    background-color: #f8f9fa;
+    border-right: 1px solid #e9ecef;
+
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+}
+
+.main .right {
+    width: 720px;
+    height: 100%;
+    background-color: white;
+
+    padding: 0 20px;
+}
+
+.cover {
+    display: none;
+}
+
+.main .left .user {
+    height: 80px;
+    font-size: 18px;
+    line-height: 80px;
+    color: #333;
+    padding: 0 20px;
+    font-weight: 600;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.main .left .search {
+    height: 60px;
+    padding: 10px 20px;
+
+    /* 使用弹性布局, 让里面的元素, 水平方向排列 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+
+.main .left .search input {
+    height: 38px;
+    flex: 1;
+    line-height: 38px;
+    font-size: 14px;
+    color: #333;
+    background-color: white;
+
+    /* 去除边框和轮廓线 */
+    border: 1px solid #dee2e6;
+    outline: none;
+    /* 输入框里的文字和左侧边界有个边距 */
+    padding-left: 12px;
+
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.main .left .search input:focus {
+    border-color: #07c160;
+    box-shadow: 0 0 0 3px rgba(7, 193, 96, 0.1);
+}
+
+.main .left .search button {
+    height: 38px;
+    width: 38px;
+    border: none;
+    outline: none;
+
+    background-color: #07c160;
+
+    border-radius: 8px;
+    background-image: url(../img/搜索.png);
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+    background-position: center center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.main .left .search button:hover {
+    background-color: #06ad56;
+}
+
+.main .left .search button:active {
+    transform: scale(0.95);
+}
+
+.main .left .tab {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.main .left .tab .tab-session {
+    height: 100%;
+    width: 50%;
+
+    background-image: url(../img/对话.png);
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    background-position: center center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.main .left .tab .tab-session:hover {
+    background-color: rgba(7, 193, 96, 0.05);
+}
+
+.main .left .tab .tab-friend {
+    height: 100%;
+    width: 50%;
+
+    background-image: url(../img/用户2.png);
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    background-position: center center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.main .left .tab .tab-friend:hover {
+    background-color: rgba(7, 193, 96, 0.05);
+}
+
+.main .left .list {
+    height: 550px;
+
+    /* 如果里面的内容太多了, 就自动提供一个滚动条 */
+    overflow: auto;
+}
+
+.main .left .list li {
+    height: 60px;
+    padding: 10px 20px;
+    color: #333;
+    border-bottom: 1px solid #f1f3f5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.main .left .list li:hover {
+    background-color: rgba(7, 193, 96, 0.05);
+}
+
+.main .left .list .selected {
+    background-color: rgba(7, 193, 96, 0.1);
+}
+
+/* 这个样式是给会话列表使用的 */
+.main .left .list li h3,
+.main .left .list li p {
+    height: 20px;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+/* 这个样式是给好友列表使用的 */
+.main .left .list li h4 {
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    margin-bottom: 2px;
+}
+
+/* 应用了这个 css 类的元素就会被自动隐藏 */
+.hide {
+    display: none;
+}
+
+/* 隐藏滚动条 */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* 页面加载动画 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.main {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* 消息出现动画 */
+@keyframes messageSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.main .right .message-show .message {
+    animation: messageSlideIn 0.3s ease-out;
+}
+
+/* 列表项动画 */
+.main .left .list li {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.main .right .title {
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    border-bottom: 1px solid #e9ecef;
+    color: #333;
+}
+
+.main .right .message-show {
+    height: 535px;
+
+    border-bottom: 1px solid #e9ecef;
+
+    /* 内容太多, 自动进行滚动 */
+    overflow: auto;
+    padding: 15px 0;
+}
+
+.main .right .message-show .message {
+    margin-bottom: 20px;
+    /* 宽度默认 100%, 高度的话不显式设定, 后续一条消息的内容有多有少 */
+    display: flex;
+}
+
+/* 这个样式让子元素靠左 */
+.main .right .message-show .message-left {
+    justify-content: flex-start;
+}
+
+/* 这个样式让子元素靠右 */
+.main .right .message-show .message-right {
+    justify-content: flex-end;
+}
+
+.main .right .message-show .message .box {
+    /* box 凸显出左右这样的效果, 宽度不能是 100% */
+    width: auto;
+    max-width: 70%;
+}
+
+.main .right .message-show .message .box h4 {
+    /* 去掉加粗效果 */
+    font-weight: 500;
+    height: 20px;
+    line-height: 20px;
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: #6c757d;
+}
+
+.main .right .message-show .message .box p {
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    word-wrap: break-word;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.main .right .message-show .message .box p:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* 给左侧右侧消息设置背景色 */
+.main .right .message-show .message-left .box p {
+    background-color: white;
+    border: 1px solid #e9ecef;
+}
+
+.main .right .message-show .message-right .box p {
+    background: #95ec69;
+    color: #333;
+}
+
+.main .right .message-show .message-right .box h4 {
+    text-align: right;
+}
+
+.main .right .message-input {
+    /* 先把 textarea 转成块级元素, 方便设置尺寸啥的 */
+    display: block;
+    width: 100%;
+    height: 110px;
+    border: 1px solid #e9ecef;
+    outline: none;
+
+    margin-top: 2px;
+    background-color: #f8f9fa;
+    padding: 12px;
+    resize: none;
+    font-size: 14px;
+    line-height: 1.6;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.main .right .message-input:focus {
+    border-color: #07c160;
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(7, 193, 96, 0.1);
+}
+
+.main .right .ctrl {
+    height: 35px;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 3px;
+}
+
+.main .right .ctrl button {
+    height: 38px;
+    width: 100px;
+    background: #07c160;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.main .right .ctrl button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(7, 193, 96, 0.4);
+}
+
+.main .right .ctrl button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(7, 193, 96, 0.3);
+}
