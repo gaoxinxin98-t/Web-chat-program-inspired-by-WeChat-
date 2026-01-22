@@ -1,6 +1,5 @@
 spring:
   application:
-    name: java_chatroom
   # 数据库连接配置
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/java_chatroom?characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
@@ -13,7 +12,7 @@ mybatis:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印SQL语句
   mapper-locations: classpath:mapper/**Mapper.xml
 # 打印日志
-logging:
-  file:
-    name: spring-book.log
+#logging:
+#  file:
+#    name: spring-book.log
 
