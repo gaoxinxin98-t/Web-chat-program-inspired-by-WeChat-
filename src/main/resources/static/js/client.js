@@ -41,7 +41,7 @@ initSwitchTab();
 ////////////////////////////////
 // WebSocket初始化
 ////////////////////////////////
-let webSocket = new WebSocket("ws://127.0.0.1:8080/SessionMessage");
+let webSocket = new WebSocket("ws://121.43.61.169:8082/SessionMessage");
 webSocket.onopen=function() {
     console.log("连接成功！");
 }
@@ -52,6 +52,14 @@ webSocket.onclose=function(){
 webSocket.onmessage=function(e){
     console.log("消息：",e.data);
     let rep = JSON.parse(e.data);
+
+    // 处理登录冲突通知
+    if(rep.type == "login_conflict") {
+        alert(rep.message || "您的账号已在其他设备登录，请重新登录");
+        location.assign("/login.html");
+        return;
+    }
+
     if(rep.type=="message") {
         handleMessage(rep);
     }else{
